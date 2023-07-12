@@ -10,13 +10,15 @@ const productKeySchema = mongoose.Schema({
   address: String,
   city: String,
   pincode: Number,
+  deviceIP:String,
+  registerDate:String,
   dealerName: String,
   dealerCode: String,
   dealerMobile: Number,
   state: String,
   country: String
 });
-
+//
 const productKeyModel = mongoose.model("Products", productKeySchema);
 
 module.exports = {

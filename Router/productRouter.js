@@ -27,6 +27,16 @@ router.get("/productKeys", async (req, res) => {
   }
 });
 
+router.get("/productKeys/total", async (req, res) => {
+  try {
+    const productKeys = await productKeyModel.find();
+    const totalProducts = productKeys.length;
+    res.status(200).json({ totalProducts });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve product keys" });
+  }
+});
+
 // Get a specific product key by ID
 router.get("/productKeys/:id", async (req, res) => {
   try {
