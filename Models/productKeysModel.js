@@ -18,7 +18,7 @@ const productKeySchema = mongoose.Schema({
   state: String,
   country: String
 });
-//
+
 const productKeyModel = mongoose.model("Products", productKeySchema);
 
 module.exports = {
