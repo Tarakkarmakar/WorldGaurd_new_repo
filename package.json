@@ -13,9 +13,14 @@
   "main": "index.js",
   "devDependencies": {},
   "scripts": {
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start":"nodemon index.js"
   
+=======
+    "test": "echo \"Error: no test specified\" && exit 1"
+ 
+>>>>>>> 2270c3ea5534dd2228bc3ba41ea1e9bd0ed4ede8
   },
   "keywords": [],
   "author": "",
