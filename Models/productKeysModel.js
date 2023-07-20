@@ -16,9 +16,10 @@ const productKeySchema = mongoose.Schema({
   dealerCode: String,
   dealerMobile: Number,
   state: String,
-  country: String
+  country: String,
+  demo:Boolean
 });
-
+//
 const productKeyModel = mongoose.model("Products", productKeySchema);
 
 module.exports = {
