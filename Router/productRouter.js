@@ -127,4 +127,37 @@ router.delete("/productKeys/:id", async (req, res) => {
   }
 });
 
+router.get("/totalActivated", async (req, res) => {
+  try {
+    console.log("Activated count route accessed"); // Add this log to check if the route is being accessed
+    const activatedProductKeysCount = await productKeyModel.countDocuments({ isActivated: true });
+    console.log("Activated count:", activatedProductKeysCount); // Add this log to see the count value
+    res.status(200).json({ activatedProductKeysCount });
+  } catch (err) {
+    console.error("Error retrieving activated product key count:", err); // Add this log to see any errors that occur
+    res.status(500).json({ error: "Failed to retrieve activated product key count" });
+  }
+});
+
+
+// Get the count of activated product keys matching the dealerCode parameter
+router.get("/productKeys/dealer/:dealerCode/activatedCount", async (req, res) => {
+  try {
+    const dealerCode = req.params.dealerCode;
+
+    // Find all activated product keys for the specified dealerCode
+    const activatedProductKeys = await productKeyModel.find({
+      dealerCode: dealerCode,
+      isActivated: true
+    });
+
+    // Get the count of activated product keys
+    const activatedProductKeysCount = activatedProductKeys.length;
+
+    res.status(200).json({ activatedProductKeysCount });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve activated product key count" });
+  }
+});
+
 module.exports = router;
