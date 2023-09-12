@@ -193,6 +193,18 @@ router.get("/demoActivated", async (req, res) => {
     res.status(500).json({ error: "Failed to retrieve count" });
   }
 });
+// Get activated stocks (isActivated is true and demo field is not present)
+router.get("/activatedStocks", async (req, res) => {
+  try {
+    const activatedStocks = await productKeyModel.find({
+      isActivated: true,
+      demo: { $exists: false },
+    });
+    res.status(200).json(activatedStocks);
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve activated stocks" });
+  }
+});
 
 
 
