@@ -160,4 +160,40 @@ router.get("/productKeys/dealer/:dealerCode/activatedCount", async (req, res) =>
   }
 });
 
+router.get("/stockActivated", async (req, res) => {
+  try {
+    const count = await productKeyModel.countDocuments({
+      demo: { $exists: false },
+      isActivated: true,
+    });
+    res.status(200).json({ count });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve count" });
+  }
+});
+router.get("/stockAvailable", async (req, res) => {
+  try {
+    const count = await productKeyModel.countDocuments({
+      demo: { $exists: false },
+      isActivated: false,
+    });
+    res.status(200).json({ count });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve count" });
+  }
+});
+router.get("/demoActivated", async (req, res) => {
+  try {
+    const count = await productKeyModel.countDocuments({
+      demo: { $exists: true },
+      isActivated: true,
+    });
+    res.status(200).json({ count });
+  } catch (err) {
+    res.status(500).json({ error: "Failed to retrieve count" });
+  }
+});
+
+
+
 module.exports = router;
